@@ -25,21 +25,30 @@
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
-				<configuration>
+				<configuration>				
 				<cloudHubDeployment>
-				<uri>https://anypoint.mulesoft.com</uri> 
-				<username>tomislmn</username>
-				<password>17297@Mule</password>
-				<environment>Sandbox</environment>
-				<workers>1</workers>
-				<workerType>Micro</workerType>
-				<applicationName>hello2</applicationName>
-				<muleVersion>4.2.2</muleVersion>
-				<region>us-east-2</region>
-			    <objectStoreV2>true</objectStoreV2>
-				</cloudHubDeployment>
+				
+				
+				  <uri>https://anypoint.mulesoft.com</uri>
+		          <muleVersion>${mule.version}</muleVersion> 
+		          <username>${username}</username> 
+		          <password>${password}</password> 
+		          <workers>${workers}</workers>
+		          <workerType>${worker.type}</workerType>
+		          <environment>${environment}</environment> 
+		          <applicationName>${application.name}</applicationName>
+		          <objectStoreV2>true</objectStoreV2>
+		          
+                  </cloudHubDeployment>
 				</configuration>
 			</plugin>
+			<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-deploy-plugin</artifactId>
+  <configuration>
+    <skip>true</skip>
+  </configuration>
+</plugin>
 		</plugins>
 	</build>
 
@@ -56,6 +65,29 @@
             <version>1.1.5</version>
             <classifier>mule-plugin</classifier>
         </dependency>
+            <dependency>
+            <groupId>org.mule.module</groupId>
+            <artifactId>mule-java-module</artifactId>
+            <version>1.2.5</version>
+            <classifier>mule-plugin</classifier>
+        </dependency>
+    	<dependency>
+            <groupId>org.mule.connectors</groupId>
+            <artifactId>mule-wsc-connector</artifactId>
+            <version>1.5.4</version>
+            <classifier>mule-plugin</classifier>
+        </dependency>
+    	<dependency>
+            <groupId>org.mule.modules</groupId>
+            <artifactId>mule-apikit-module</artifactId>
+            <version>1.3.4</version>
+            <classifier>mule-plugin</classifier>
+        </dependency>
+		 <dependency>		        
+		  	<groupId>org.eclipse.jetty</groupId>
+    		<artifactId>jetty-maven-plugin</artifactId>
+    		<version>9.4.26.v20200117</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>
@@ -73,6 +105,8 @@
         </repository>
     </repositories>
     <pluginRepositories>
+    
+    
         <pluginRepository>
             <id>mulesoft-releases</id>
             <name>mulesoft release repository</name>
